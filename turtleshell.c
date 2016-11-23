@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <string.h>
+#include <sys/wait.h>
 
 void parse(char* command, char** word) {
   *strchr(command, '\n') = 0;
@@ -12,8 +13,15 @@ void parse(char* command, char** word) {
 
 void execute(char** word){
   int f = fork();
-  if(f > 0)
+  if (f == -1)
+    printf("nah");
+  else if(f == 0) {
     execvp(word[0], word);
+  }
+  else {
+    int cstat;
+    waitpid(f, &cstat,0);
+  }
 }
 
 int main() {
