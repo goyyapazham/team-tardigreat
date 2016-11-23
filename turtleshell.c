@@ -12,7 +12,8 @@ void parse(char* command, char** word) {
 
 void execute(char** word){
   int f = fork();
-  execvp(word[0], word);
+  if(f > 0)
+    execvp(word[0], word);
 }
 
 int main() {
