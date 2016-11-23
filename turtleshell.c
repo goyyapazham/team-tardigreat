@@ -29,7 +29,7 @@ int main() {
   int i;
   char* word[50];
   while(1) {
-    printf("Turtleshell: ");
+    printf("tertle >>> ");
     fgets(command, sizeof(command), stdin);
     parse(command, word);
     execute(word);
