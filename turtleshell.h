@@ -1,5 +1,5 @@
 //parses words and idk does stuff
-void split(char* command, char delim, char** word);
+char** split(char* command, char delim);
 //executes command in char** word
 void execute(char** word);
 //change dir

@@ -16,10 +16,8 @@ Attempted:
 Bugs:
 
 Files and Function Headers:
-parse.c
-	void parse()
-	Inputs: char *command, char** word
-	Returns: nothing! Modifies word.
-
-
 turtleshell.c
+	split()
+	execute()
+	cd()
+	main()
