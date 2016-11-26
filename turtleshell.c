@@ -3,6 +3,7 @@
 #include <unistd.h>
 #include <string.h>
 #include <sys/wait.h>
+#include "parse.h"
 #include "turtleshell.h"
 
 void parse(char* command, char** word) {
@@ -38,7 +39,7 @@ void cd(char* path) {
 int main() {
   char command[100];
   int i;
-  char* word[50];
+  char** word[50];
   while(1) {
     printf("tertle >>> ");
     fgets(command, sizeof(command), stdin);
