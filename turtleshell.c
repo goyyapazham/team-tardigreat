@@ -3,8 +3,14 @@
 #include <unistd.h>
 #include <string.h>
 #include <sys/wait.h>
-#include "parse.h"
 #include "turtleshell.h"
+
+void split(char *command, char delim, char** word) {
+  *strchr(command, '\n') = 0;
+  int i = 0;
+  char *x = command;
+  while(word[i] = strsep(&x, delim)) i++;
+}
 
 void execute(char** word){
   int f = fork();
