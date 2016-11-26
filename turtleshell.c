@@ -30,7 +30,8 @@ void execute(char** word){
 }
 
 void cd(char* path) {
-  printf("cd %s\n", path);
+  //printf("cd %s\n", path);
+  chdir(path);
 }
 
 int main() {
