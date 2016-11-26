@@ -3,6 +3,7 @@
 #include <unistd.h>
 #include <string.h>
 #include <sys/wait.h>
+#include "turtleshell.h"
 
 void parse(char* command, char** word) {
   *strchr(command, '\n') = 0;
