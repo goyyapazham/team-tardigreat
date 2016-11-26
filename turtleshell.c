@@ -13,10 +13,15 @@ void parse(char* command, char** word) {
 
 void execute(char** word){
   int f = fork();
-  if (f == -1)
-    printf("nah");
+  if (f == -1) {
+    printf("nah\n");
+    exit(1);
+  }
   else if(f == 0) {
-    execvp(word[0], word);
+    if (execvp(word[0], word) < 0) {
+      printf("nah\n");
+      exit(1);
+    }
   }
   else {
     int cstat;
