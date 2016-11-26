@@ -29,6 +29,10 @@ void execute(char** word){
   }
 }
 
+void cd(char* path) {
+  printf("cd %s\n", path);
+}
+
 int main() {
   char command[100];
   int i;
@@ -39,8 +43,10 @@ int main() {
     parse(command, word);
     if (strcmp(word[0], "exit") == 0)
       exit(0);
-    
-    execute(word);
+    if (strcmp(word[0], "cd") == 0)
+      cd(word[1]);
+    else
+      execute(word);
   }
   return 0;
 }
