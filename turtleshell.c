@@ -9,7 +9,7 @@ void split(char *command, char delim, char** word) {
   *strchr(command, '\n') = 0;
   int i = 0;
   char *x = command;
-  while(word[i] = strsep(&x, delim)) i++;
+  while(word[i] = strsep(&x, " ")) i++;
 }
 
 void execute(char** word){
