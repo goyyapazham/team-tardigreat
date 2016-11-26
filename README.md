@@ -9,7 +9,7 @@ by Nalanda Sharadjaya and Stephanie Yoon
 Features:
 	Forks and executes commands!
 	Exit, cd
-	
+	Parses multiple commands on one line!
 	
 Attempted:
 
