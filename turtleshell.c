@@ -36,7 +36,7 @@ int main() {
   while(1) {
     printf("tertle >>> ");
     fgets(command, sizeof(command), stdin);
-    parse(command, word);
+    split(command, " ", word);
     if (strcmp(word[0], "exit") == 0)
       exit(0);
     if (strcmp(word[0], "cd") == 0)

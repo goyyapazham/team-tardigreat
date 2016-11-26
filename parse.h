@@ -1,1 +1,1 @@
-void parse(char* command, char** word);
+void split(char* command, char delim, char** word);
