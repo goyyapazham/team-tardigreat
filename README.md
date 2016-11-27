@@ -14,23 +14,7 @@
 ## Bugs:
 * Files and Function Headers:
 * turtleshell.c
-
-// ================== PARSE FXNS ==================
-
-//removes pointer to single command sans leading/trailing whitespace
-
-char* trim(char *command);
-
-//returns an array of commands given a delimeter (e.g., ';', ' ')
-
-char** split(char* command, char delim);
-
-// ================== SHELL FXNS ==================
-
-//executes a particular command
-
-void execute(char** word);
-
-//helper function for changing directory
-
-void cd(char* path);
+ * `char* trim(char *command)`: removes pointer to single command sans leading/trailing whitespace
+ * `char** split(char* command, char delim)`: returns an array of commands given a delimiter
+ * `void execute(char** word)`: executes a particular command
+ * `void cd(char* path)`: changes directory of current process
