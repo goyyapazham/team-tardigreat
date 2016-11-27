@@ -95,14 +95,8 @@ int main() {
     word = split(command, ';');
     for (i = 0; word[i] != NULL; i++) {
       c = (char **)malloc(50);
-      char** d = split(word[i], '>');
-      if( strcmp(word[i], *d) != 0 ) {
-	greater(d[0], d[1]);
-      }
-      else {
-	c = split(word[i], ' ');
-	execute(c);
-      }
+      c = split(word[i], ' ');
+      execute(c);
     }
   }
   return 0;
