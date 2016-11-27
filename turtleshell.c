@@ -1,12 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <unistd.h>
 #include <string.h>
-#include <sys/wait.h>
-#include <errno.h>
 #include <fcntl.h>
-#include <sys/types.h>
+#include <unistd.h>
+#include <errno.h>
+#include <sys/wait.h>
 #include <sys/stat.h>
+#include <sys/types.h>
 #include "turtleshell.h"
 
 // ================== PARSE FXNS ==================
@@ -40,11 +40,11 @@ char** split(char *command, char delim) {
 // ================== REDIR FXNS ==================
 //redirects stdout to a file (imitates >)
 void greater(char* command, char* file) {
+  umask(000);
   file = trim(file); command = trim(command);
-  int f = open(file, 644, O_WRONLY);
-  int w = write(f, *command, sizeof(char *));
+  int f = open(file, 644, O_WRONLY|O_CREAT);
+  int w = write(f, command, sizeof(char *));
   int c = close(f);
-  //printf("file=%s, cmd=%s, f=%d, w=%d, c=%d\n", file, command, f, w, c);
 }
 //redirects stdin from a file (imitates <)
 //void less(char** word);
