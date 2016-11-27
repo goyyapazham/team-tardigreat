@@ -4,6 +4,9 @@
 #include <string.h>
 #include <sys/wait.h>
 #include <errno.h>
+#include <fcntl.h>
+#include <sys/types.h>
+#include <sys/stat.h>
 #include "turtleshell.h"
 
 // ================== PARSE FXNS ==================
@@ -34,14 +37,29 @@ char** split(char *command, char delim) {
 // ================== PARSE FXNS ==================
 
 
+// ================== REDIR FXNS ==================
+//redirects stdout to a file (imitates >)
+void greater(char* command, char* file) {
+  file = trim(file); command = trim(command);
+  int f = open(file, 644, O_WRONLY);
+  int w = write(f, *command, sizeof(char *));
+  int c = close(f);
+  //printf("file=%s, cmd=%s, f=%d, w=%d, c=%d\n", file, command, f, w, c);
+}
+//redirects stdin from a file (imitates <)
+//void less(char** word);
+//redirects stdout from one command to stdin of next (imitates |)
+//void pipe(char** word);
+// ================== REDIR FXNS ==================
+
+
 // ================== SHELL FXNS ==================
 //executes a particular command
 void execute(char** word){
   if (strcmp(word[0], "exit") == 0)
     exit(0);
-  else if (strcmp(word[0], "cd") == 0) {
-    chdir(word[1]);
-  }
+  else if (strcmp(word[0], "cd") == 0)
+    chdir(word[1]); //error handle this!
   else {
     int f = fork();
     if (f == -1) {
@@ -77,8 +95,14 @@ int main() {
     word = split(command, ';');
     for (i = 0; word[i] != NULL; i++) {
       c = (char **)malloc(50);
-      c = split(word[i], ' ');
-      execute(c);
+      char** d = split(word[i], '>');
+      if( strcmp(word[i], *d) != 0 ) {
+	greater(d[0], d[1]);
+      }
+      else {
+	c = split(word[i], ' ');
+	execute(c);
+      }
     }
   }
   return 0;
