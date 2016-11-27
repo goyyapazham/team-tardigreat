@@ -15,14 +15,18 @@ char** split(char *command, char delim) {
 
 char* trim(char *command) {
   char *x = command;
-  int i = 0; int len = strlen(x);
-  while(i < len-1) {
-    if( strcmp((&x)[i], " ") == 0 ) {
-      x[i] = x[i+1];
-    }
-    i++;
+  int len = strlen(x);
+  int start=0; int end=len-1;
+  while( start < len && strncmp(&x[start], " ", 1) == 0 ) {
+    start++;
   }
-  return x;
+  while( end > 0 && strncmp(&x[end], " ", 1) == 0 ) {
+    end--;
+  }
+  char *ret = (char *)malloc(end-start-1);
+  for(int i=0; i<end-start+1; i++)
+    strncpy(&ret[i], &x[i+start], 1);
+  return ret;
 }
 
 void execute(char** word){

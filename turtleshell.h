@@ -1,8 +1,11 @@
-//removes leading/trailing whitespace
+// ================== PARSE FXNS ==================
+//removes pointer to single command sans leading/trailing whitespace
 char* trim(char *command);
-//parses words and idk does stuff
+//returns an array of commands given a delimeter (e.g., ';', ' ')
 char** split(char* command, char delim);
-//executes command in char** word
+
+// ================== SHELL FXNS ==================
+//executes a particular command
 void execute(char** word);
-//change dir
+//helper function for changing directory
 void cd(char* path);
