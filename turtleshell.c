@@ -39,11 +39,11 @@ char** split(char *command, char delim) {
 
 // ================== REDIR FXNS ==================
 //redirects stdout to a file (imitates >)
-void greater(char** c, char* command, char* file) {
+void greater(char** c, char* file) {
   int newstdout = dup(STDOUT_FILENO);
   
-  umask(0);
-  file = trim(file); command = trim(command);
+  //umask(0);
+  file = trim(file); //command = trim(command);
   int f = open(file, O_WRONLY|O_CREAT, 0644);
   //int w = write(f, command, sizeof(char *));
   dup2(f,STDOUT_FILENO); 
