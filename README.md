@@ -17,4 +17,3 @@
  * `char* trim(char *command)`: removes pointer to single command sans leading/trailing whitespace
  * `char** split(char* command, char delim)`: returns an array of commands given a delimiter
  * `void execute(char** word)`: executes a particular command
- * `void cd(char* path)`: changes directory of current process

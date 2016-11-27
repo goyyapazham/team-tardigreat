@@ -7,5 +7,3 @@ char** split(char* command, char delim);
 // ================== SHELL FXNS ==================
 //executes a particular command
 void execute(char** word);
-//helper function for changing directory
-void cd(char* path);

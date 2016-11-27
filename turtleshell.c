@@ -3,16 +3,11 @@
 #include <unistd.h>
 #include <string.h>
 #include <sys/wait.h>
+#include <errno.h>
 #include "turtleshell.h"
 
-char** split(char *command, char delim) {
-  char** word = (char**)malloc(50);
-  int i = 0;
-  char *x = trim(command);
-  while((word[i] = strsep(&x, &delim))) i++;
-  return word;
-}
-
+// ================== PARSE FXNS ==================
+//removes pointer to single command sans leading/trailing whitespace
 char* trim(char *command) {
   char *x = command;
   int len = strlen(x);
@@ -28,12 +23,25 @@ char* trim(char *command) {
     strncpy(&ret[i], &x[i+start], 1);
   return ret;
 }
+//returns an array of commands given a delimeter (e.g., ';', ' ')
+char** split(char *command, char delim) {
+  char** word = (char**)malloc(50);
+  int i = 0;
+  char *x = trim(command);
+  while((word[i] = strsep(&x, &delim))) i++;
+  return word;
+}
+// ================== PARSE FXNS ==================
 
+
+// ================== SHELL FXNS ==================
+//executes a particular command
 void execute(char** word){
   if (strcmp(word[0], "exit") == 0)
     exit(0);
-  else if (strcmp(word[0], "cd") == 0)
-    cd(word[1]);
+  else if (strcmp(word[0], "cd") == 0) {
+    chdir(word[1]);
+  }
   else {
     int f = fork();
     if (f == -1) {
@@ -52,12 +60,10 @@ void execute(char** word){
     }
   }
 }
+// ================== SHELL FXNS ==================
 
-void cd(char* path) {
-  //printf("cd %s\n", path);
-  chdir(path);
-}
 
+// ================== MAIN   FXN ==================
 int main() {
   char command[100];
   int i;
@@ -77,3 +83,4 @@ int main() {
   }
   return 0;
 }
+// ================== MAIN   FXN ==================
