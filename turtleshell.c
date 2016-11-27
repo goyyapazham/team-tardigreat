@@ -11,7 +11,7 @@
 
 // ================== PARSE FXNS ==================
 //removes pointer to single command sans leading/trailing whitespace
-char* trim(char *command) {
+char* trim(char *command) {//causes seg faults for one letter command
   char *x = command;
   int len = strlen(x);
   int start=0; int end=len-1;
@@ -39,12 +39,18 @@ char** split(char *command, char delim) {
 
 // ================== REDIR FXNS ==================
 //redirects stdout to a file (imitates >)
-void greater(char* command, char* file) {
+void greater(char** c, char* command, char* file) {
+  int newstdout = dup(STDOUT_FILENO);
+  
   umask(0);
   file = trim(file); command = trim(command);
   int f = open(file, O_WRONLY|O_CREAT, 0644);
-  int w = write(f, command, sizeof(char *));
-  int c = close(f);
+  //int w = write(f, command, sizeof(char *));
+  dup2(f,STDOUT_FILENO); 
+  //int c = close(f);
+  //execute(c);
+  //dup2(1, newstdout);
+  close(f);
 }
 //redirects stdin from a file (imitates <)
 //void less(char** word);
@@ -96,6 +102,12 @@ int main() {
     for (i = 0; word[i] != NULL; i++) {
       c = (char **)malloc(50);
       c = split(word[i], ' ');
+      if (strchr(word[i], '>') != NULL) {
+	c = split(word[i], '>');
+	//printf("%s\n", c[0]);
+	//printf("%s\n", c[1]);
+	greater(c, c[0], c[1]);
+      }
       execute(c);
     }
   }
