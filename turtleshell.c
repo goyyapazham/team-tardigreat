@@ -40,16 +40,16 @@ char** split(char *command, char delim) {
 // ================== REDIR FXNS ==================
 //redirects stdout to a file (imitates >)
 void greater(char* command, char* file) {
-  umask(000);
+  umask(0);
   file = trim(file); command = trim(command);
-  int f = open(file, 644, O_WRONLY|O_CREAT);
+  int f = open(file, O_WRONLY|O_CREAT, 0644);
   int w = write(f, command, sizeof(char *));
   int c = close(f);
 }
 //redirects stdin from a file (imitates <)
 //void less(char** word);
 //redirects stdout from one command to stdin of next (imitates |)
-//void pipe(char** word);
+//void pipeitup(char** word);
 // ================== REDIR FXNS ==================
 
 

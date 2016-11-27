@@ -16,7 +16,7 @@
 * For some reason, the character p seems to trigger a seg fault??
 
 ##Files and Function Headers:
-* turtleshell.c
+### turtleshell.c
 ```
 // ================== PARSE FXNS ==================
 //removes pointer to single command sans leading/trailing whitespace

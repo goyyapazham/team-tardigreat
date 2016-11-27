@@ -14,4 +14,4 @@ void greater(char* command, char* file);
 //redirects stdin from a file (imitates <)
 void less(char** word);
 //redirects stdout from one command to stdin of next (imitates |)
-void pipe(char** word);
+void pipeitup(char** word);
