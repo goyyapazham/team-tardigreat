@@ -48,9 +48,10 @@ void greater(char** c, char* command, char* file) {
   //int w = write(f, command, sizeof(char *));
   dup2(f,STDOUT_FILENO); 
   //int c = close(f);
-  //execute(c);
   //dup2(1, newstdout);
   close(f);
+  execute(c);
+  dup2(newstdout, STDOUT_FILENO);
 }
 //redirects stdin from a file (imitates <)
 //void less(char** word);
@@ -108,7 +109,9 @@ int main() {
 	//printf("%s\n", c[1]);
 	greater(c, c[0], c[1]);
       }
-      execute(c);
+      else {
+	execute(c);
+      }
     }
   }
   return 0;
