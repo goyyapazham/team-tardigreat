@@ -8,9 +8,21 @@
 char** split(char *command, char delim) {
   char** word = (char**)malloc(50);
   int i = 0;
-  char *x = command;
+  char *x = trim(command);
   while((word[i] = strsep(&x, &delim))) i++;
   return word;
+}
+
+char* trim(char *command) {
+  char *x = command;
+  int i = 0; int len = strlen(x);
+  while(i < len-1) {
+    if( strcmp((&x)[i], " ") == 0 ) {
+      x[i] = x[i+1];
+    }
+    i++;
+  }
+  return x;
 }
 
 void execute(char** word){
