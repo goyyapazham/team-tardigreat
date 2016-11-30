@@ -56,7 +56,16 @@ void greater(char** c, char* file) {
   close(f);
 }
 //redirects stdin from a file (imitates <)
-//void less(char** word);
+void less(char** c, char* file) {
+  int newstdin = dup(STDIN_FILENO);
+  int f = open(file, O_RDONLY, 0644);
+  dup2(f, STDIN_FILENO);
+  execute(c);
+  dup2(newstdin, STDIN_FILENO);
+  close(f);
+}
+
+
 //redirects stdout from one command to stdin of next (imitates |)
 //void pipeitup(char** word);
 // ================== REDIR FXNS ==================
@@ -114,6 +123,10 @@ int main() {
 	//printf("%s\n", c[0]);
 	//printf("%s\n", c[1]);
 	//greater(c, c[1]);
+      }
+      else if (strchr(word[i], '<') != NULL) {
+	c=split(word[i], '<');
+	less(split(c[0], ' '), c[1]);
       }
       else {
 	c = split(word[i], ' ');
