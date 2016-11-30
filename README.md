@@ -30,9 +30,10 @@ void execute(char** word);
 
 // ================== REDIR FXNS ==================
 //redirects stdout to a file (imitates >)
-void greater(char* command, char* file);
+void greater(char** c, char* file);
 //redirects stdin from a file (imitates <)
-void less(char** word);
+void less(char** c, char* file);
 //redirects stdout from one command to stdin of next (imitates |)
-void pipe(char** word);
+void pipeitup(char** word);
+
 ```
