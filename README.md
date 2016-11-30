@@ -8,12 +8,13 @@
 * Forks and executes commands!
 * Exit, cd
 * Parses multiple commands on one line, separated by a semicolon
+* Simple Redirection (< and >)
 	
 ## Attempted:
-* Redirect (>), but got caught up in file I/O
+
 
 ## Bugs:
-* For some reason, the character p seems to trigger a seg fault??
+* 
 
 ##Files and Function Headers:
 ### turtleshell.c

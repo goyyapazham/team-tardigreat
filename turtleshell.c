@@ -45,7 +45,7 @@ void greater(char** c, char* file) {
   //umask(0);
   file = trim(file); //command = trim(command);
   int f = open(file, O_WRONLY|O_CREAT, 0644);
-  printf("%s, %s\n", c[0], file);
+  //printf("%s, %s\n", c[0], file);
   //int w = write(f, command, sizeof(char *));
   dup2(f,STDOUT_FILENO); 
   //int c = close(f);
@@ -74,8 +74,8 @@ void less(char** c, char* file) {
 // ================== SHELL FXNS ==================
 //executes a particular command
 void execute(char** word){
-  printf("%s\n", word[0]);
-  printf("%s\n", word[1]);
+  //printf("%s\n", word[0]);
+  //printf("%s\n", word[1]);
   if (strcmp(word[0], "exit") == 0)
     exit(0);
   else if (strcmp(word[0], "cd") == 0)
