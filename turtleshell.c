@@ -67,7 +67,11 @@ void less(char** c, char* file) {
 
 
 //redirects stdout from one command to stdin of next (imitates |)
-//void pipeitup(char** word);
+void pipeitup(char** c0, char** c1) {
+  greater(c0, "file");
+  less(c1, "file");
+  remove("file");
+}
 // ================== REDIR FXNS ==================
 
 
@@ -127,6 +131,10 @@ int main() {
       else if (strchr(word[i], '<') != NULL) {
 	c=split(word[i], '<');
 	less(split(c[0], ' '), c[1]);
+      }
+      else if (strchr(word[i], '|') != NULL) {
+	c=split(word[i], '|');
+	pipeitup(split(c[0], ' '), split(c[1], ' '));
       }
       else {
 	c = split(word[i], ' ');
