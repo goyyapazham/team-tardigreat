@@ -16,8 +16,9 @@
 
 ## Bugs:
 * execute doesn't check, if word[0] is "cd", that word[1] is a real directory
-* 
-
+* If there is already a file named "file" in the directory, pipe won't work because it creates and then removes a file by that name.
+* Does not check for escape sequences
+* Putting two ;'s next to each other will break the parser
 ##Files and Function Headers:
 ### turtleshell.c
 ```
