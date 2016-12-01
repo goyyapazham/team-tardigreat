@@ -15,6 +15,7 @@
 
 
 ## Bugs:
+* execute doesn't check, if word[0] is "cd", that word[1] is a real directory
 * 
 
 ##Files and Function Headers:
