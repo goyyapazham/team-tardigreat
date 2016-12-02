@@ -45,6 +45,7 @@ void greater(char** c, char* file) {
   int f = open(file, O_WRONLY|O_CREAT, 0644);
   dup2(f,STDOUT_FILENO); 
   execute(c);
+  printf("/0");
   dup2(newstdout, STDOUT_FILENO);
   close(f);
 }
