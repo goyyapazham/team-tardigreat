@@ -13,18 +13,19 @@
 	
 ## Attempted:
 * Tried to make >>, but couldn't figure out how to parse the string.
-* Tried to fix some of the weird bugs with redirect, but alas, was not successful
-
+* Couldn't fix issue with terminating null with some redirect tests
 
 ## Bugs:
 * execute doesn't check, if word[0] is "cd", that word[1] is a real directory
 * If there is already a file named "file" in the directory, pipe won't work because it creates and then removes a file by that name.
 * Does not check for escape sequences
 * Putting two ;'s next to each other will break the parser
-* Redirects still don't work with commands with spaces in them (e.g., `echo hey there > a.out`, or `ls makefile > test.txt`; sometimes they work the first time but then you can't rewrite a weird command like that to an existing file, or something...)
+* Sometimes when you redirect to a file it writes a file with junk at the end indicating the string didn't have a terminating null????
 
 ##Files and Function Headers:
 ### turtleshell.c
+* just has main function
+### utils.c
 ```
 // ================== PARSE FXNS ==================
 //removes pointer to single command sans leading/trailing whitespace

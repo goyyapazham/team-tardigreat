@@ -1,8 +1,11 @@
-ts: turtleshell.c
-	gcc turtleshell.c -o ts
+make: turtleshell.c
+	gcc -c -g utils.c
+	gcc -c -g turtleshell.c
+	gcc -g utils.o turtleshell.o -o shelly
+
+run: make
+	./shelly
 
 clean:
-	rm *~
-
-run: ts
-	./ts
+	rm -rf *~
+	rm -rf *.out
