@@ -21,9 +21,10 @@ char* trim(char *command) {//causes seg faults for one letter command
   while( end > 0 && strncmp(&x[end], " ", 1) == 0 ) {
     end--;
   }
-  char *ret = (char *)malloc(end-start-1);
+  char *ret = (char *)malloc(end-start);
   for(int i=0; i<end-start+1; i++)
     strncpy(&ret[i], &x[i+start], 1);
+  ret[-1] = 0;
   return ret;
 }
 //returns an array of commands given a delimeter (e.g., ';', ' ')
@@ -41,11 +42,11 @@ char** split(char *command, char delim) {
 //redirects stdout to a file (imitates >)
 void greater(char** c, char* file) {
   int newstdout = dup(STDOUT_FILENO);
-  file = trim(file); 
+  file = trim(file);
+  remove(file);
   int f = open(file, O_WRONLY|O_CREAT, 0644);
   dup2(f,STDOUT_FILENO); 
   execute(c);
-  printf("/0");
   dup2(newstdout, STDOUT_FILENO);
   close(f);
 }
