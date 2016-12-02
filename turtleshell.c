@@ -110,9 +110,22 @@ int main() {
     word = split(command, ';');
     for (i = 0; word[i] != NULL; i++) {
       c = (char **)malloc(50);
-      if (strchr(word[i], '>') != NULL) {
-        c = split(word[i], '>');
-	greater(split(c[0], ' '), c[1]);
+      char * n = word[i];
+      printf("%s\n", word[i]);
+      char * w;
+      /*if ((n = strstr(word[i], ">>")) != NULL) {
+	n+=2;
+	printf("%s\n", n);
+	printf("%s\n", word[i]);
+	printf("%d\n", (int)(strlen(word[i]) - strlen(n) - 2));
+	strncpy(w, word[i], (int)(strlen(word[i]) - strlen(n) - 2));
+	printf("%s\n", word[i]);
+	//printf("%s\n", w);
+	
+	}*/
+      else if (strchr(word[i], '>') != NULL) {
+	  c = split(word[i], '>');
+	  greater(split(c[0], ' '), c[1]);
       }
       else if (strchr(word[i], '<') != NULL) {
 	c=split(word[i], '<');
