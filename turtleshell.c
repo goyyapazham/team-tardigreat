@@ -57,8 +57,6 @@ void less(char** c, char* file) {
   dup2(newstdin, STDIN_FILENO);
   close(f);
 }
-
-
 //redirects stdout from one command to stdin of next (imitates |)
 void pipeitup(char** c0, char** c1) {
   greater(c0, "file");
