@@ -121,7 +121,7 @@ int main() {
 	//printf("%s\n", w);
 	
 	}*/
-      else if (strchr(word[i], '>') != NULL) {
+       if (strchr(word[i], '>') != NULL) {
 	  c = split(word[i], '>');
 	  greater(split(c[0], ' '), c[1]);
       }
