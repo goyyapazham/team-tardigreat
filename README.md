@@ -12,7 +12,9 @@
 * Simple Pipe (only one |)
 	
 ## Attempted:
+* Tried to make >>, but couldn't figure out how to parse the string.
 * Tried to fix some of the weird bugs with redirect, but alas, was not successful
+
 
 ## Bugs:
 * execute doesn't check, if word[0] is "cd", that word[1] is a real directory
