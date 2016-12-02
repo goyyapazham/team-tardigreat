@@ -1,8 +1,8 @@
-#README.md#
-README.md
-a.out
-makefile
-test.txt
-ts
-turtleshell.c
-turtleshell.h
+ts: turtleshell.c
+	gcc turtleshell.c -o ts
+
+clean:
+	rm *~
+
+run: ts
+	./ts
